@@ -140,6 +140,13 @@ namespace ProcessProgress
 
         public void Clear()
         {
+            // Po wyjsciu ze swiata gra niszczy HUD razem z paskami - zostaja same martwe referencje.
+            if (!IsAlive)
+            {
+                _bars.Clear();
+                _pool.Clear();
+                return;
+            }
             _toRelease.Clear();
             _toRelease.AddRange(_bars.Keys);
             foreach (var target in _toRelease)
@@ -160,6 +167,8 @@ namespace ProcessProgress
 
         private static void SetActive(BarView bar, bool active)
         {
+            if (bar.Root == null) // zniszczony razem z HUD-em gry
+                return;
             if (bar.Root.activeSelf != active)
                 bar.Root.SetActive(active);
         }

@@ -19,7 +19,7 @@ namespace ProcessProgress
     {
         public const string PluginGUID = "com.michal.valheim.processprogress";
         public const string PluginName = "Process Progress";
-        public const string PluginVersion = "1.0.1";
+        public const string PluginVersion = "1.0.2";
 
         private const float ScanInterval = 1f;
         private const float RefreshInterval = 0.5f;
@@ -98,8 +98,15 @@ namespace ProcessProgress
         private void Fault(Exception e)
         {
             _faulted = true;
-            _bars?.Clear();
             Log.LogError($"Process Progress wylaczony po nieoczekiwanym bledzie: {e}");
+            try
+            {
+                _bars?.Clear();
+            }
+            catch (Exception clearError)
+            {
+                Log.LogError($"Nie udalo sie schowac paskow po bledzie: {clearError}");
+            }
         }
 
         private void RunUpdate()
