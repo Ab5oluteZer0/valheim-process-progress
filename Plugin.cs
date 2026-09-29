@@ -19,7 +19,7 @@ namespace ProcessProgress
     {
         public const string PluginGUID = "com.michal.valheim.processprogress";
         public const string PluginName = "Process Progress";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = "1.0.1";
 
         private const float ScanInterval = 1f;
         private const float RefreshInterval = 0.5f;
