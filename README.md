@@ -4,6 +4,10 @@ BepInEx mod for [Valheim](https://www.valheimgame.com/) that shows a small
 progress bar above things that take time, so you can see at a glance how long
 is left - without guessing or checking each one.
 
+> **Unofficial mod.** This is a fan-made mod, not affiliated with or endorsed by
+> Iron Gate. It marks your game as modded (the game shows this in the main menu),
+> as Iron Gate asks mod authors to do.
+
 ## What gets a bar
 
 Anything within range of you (10 m by default):

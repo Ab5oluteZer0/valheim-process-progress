@@ -19,7 +19,7 @@ namespace ProcessProgress
     {
         public const string PluginGUID = "com.michal.valheim.processprogress";
         public const string PluginName = "Process Progress";
-        public const string PluginVersion = "0.1.0";
+        public const string PluginVersion = "1.0.0";
 
         private const float ScanInterval = 1f;
         private const float RefreshInterval = 0.5f;
@@ -45,6 +45,9 @@ namespace ProcessProgress
         private void Awake()
         {
             Log = Logger;
+            // Gra prosi mody o ustawienie tej flagi: w menu pojawia sie napis, ze gra jest
+            // zmodowana (Iron Gate wymaga oznaczania modow jako nieoficjalnych).
+            Game.isModded = true;
             _range = Config.Bind("General", "Range", 10f,
                 new ConfigDescription("How far from you (meters) progress bars are shown.", new AcceptableValueRange<float>(3f, 40f)));
             _showPlants = Config.Bind("General", "ShowPlants", true, "Growing plants: crops and tree saplings.");
