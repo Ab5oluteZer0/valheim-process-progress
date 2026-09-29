@@ -8,6 +8,18 @@ is left - without guessing or checking each one.
 > Iron Gate. It marks your game as modded (the game shows this in the main menu),
 > as Iron Gate asks mod authors to do.
 
+## Screenshots
+
+![Beehives: honey level and time to the next one, or Done when full](docs/beehives.jpg)
+
+![Berry bushes regrowing after picking](docs/berries.jpg)
+
+![Growing crops](docs/crops.jpg)
+
+![Planted seeds](docs/seeds.jpg)
+
+![Fermenter](docs/fermenter.jpg)
+
 ## What gets a bar
 
 Anything within range of you (10 m by default):
@@ -19,7 +31,8 @@ Anything within range of you (10 m by default):
   an empty fermenter
 - **Beehives** - honey stored (e.g. `2/4`) and time until the next one
 
-Finished things show a gold **Ready** bar. When something is stuck, the bar
+Finished things show a full gold bar with the game's own word for it (in
+English: **Done**, e.g. `Beehive: Done`). When something is stuck, the bar
 turns red and shows the game's own reason, for example a plant with no sun
 or in the wrong biome, a fermenter that needs a roof (without one the game
 keeps resetting fermentation), or beehives that need more open space.
