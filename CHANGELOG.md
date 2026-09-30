@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.3
+- Settings file renamed to `com.ab5olutezer0.valheim.processprogress.cfg`. Your old settings are moved over automatically.
+
 ## 1.0.2
 - Bug fix: progress bars stopped working after going back to the main menu.
 

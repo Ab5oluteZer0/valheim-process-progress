@@ -43,7 +43,7 @@ hide together with the HUD and follow the game's UI scale setting.
 
 ## Settings
 
-In `BepInEx\config\com.michal.valheim.processprogress.cfg`:
+In `BepInEx\config\com.ab5olutezer0.valheim.processprogress.cfg`:
 
 - `Range` - how far from you bars are shown, 3 to 40 m (default 10)
 - `ShowPlants`, `ShowPickables`, `ShowFermenters`, `ShowBeehives` - turn

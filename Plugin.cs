@@ -17,9 +17,9 @@ namespace ProcessProgress
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     public class ProcessProgressPlugin : BaseUnityPlugin
     {
-        public const string PluginGUID = "com.michal.valheim.processprogress";
+        public const string PluginGUID = "com.ab5olutezer0.valheim.processprogress";
         public const string PluginName = "Process Progress";
-        public const string PluginVersion = "1.0.2";
+        public const string PluginVersion = "1.0.3";
 
         private const float ScanInterval = 1f;
         private const float RefreshInterval = 0.5f;
@@ -42,12 +42,35 @@ namespace ProcessProgress
         private float _refreshTimer;
         private bool _faulted;
 
+        // Do wersji 1.0.2 identyfikator wtyczki zaczynal sie od "com.michal". Plik konfiguracji
+        // nosi nazwe identyfikatora, wiec stary plik przenosimy pod nowa nazwe - gracz nie traci
+        // ustawien. Wywolywane przed pierwszym Config.Bind.
+        private const string LegacyPluginGUID = "com.michal.valheim.processprogress";
+
+        private void MigrateLegacyConfig()
+        {
+            string legacyPath = System.IO.Path.Combine(Paths.ConfigPath, LegacyPluginGUID + ".cfg");
+            if (System.IO.File.Exists(Config.ConfigFilePath) || !System.IO.File.Exists(legacyPath))
+                return;
+            try
+            {
+                System.IO.File.Move(legacyPath, Config.ConfigFilePath);
+                Config.Reload();
+                Logger.LogInfo($"Przeniesiono ustawienia: {legacyPath} -> {Config.ConfigFilePath}");
+            }
+            catch (Exception e)
+            {
+                Logger.LogWarning($"Nie udalo sie przeniesc ustawien ({legacyPath}): {e}");
+            }
+        }
+
         private void Awake()
         {
             Log = Logger;
             // Gra prosi mody o ustawienie tej flagi: w menu pojawia sie napis, ze gra jest
             // zmodowana (Iron Gate wymaga oznaczania modow jako nieoficjalnych).
             Game.isModded = true;
+            MigrateLegacyConfig();
             _range = Config.Bind("General", "Range", 10f,
                 new ConfigDescription("How far from you (meters) progress bars are shown.", new AcceptableValueRange<float>(3f, 40f)));
             _showPlants = Config.Bind("General", "ShowPlants", true, "Growing plants: crops and tree saplings.");
